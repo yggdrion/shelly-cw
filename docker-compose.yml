@@ -1,6 +1,6 @@
 version: "3.9"
 services:
   shelly-cw:
-    build: .
+    image: ghcr.io/yggdrion/shelly-cw:latest
     env_file:
       - .env

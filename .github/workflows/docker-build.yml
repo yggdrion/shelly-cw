@@ -2,12 +2,14 @@ name: docker-build
 
 on:
   workflow_dispatch:
-  push:
-    branches:
-      - "main"
+  # push:
+  #   branches:
+  #     - "main"
   pull_request:
     branches:
       - "main"
+  release:
+    types: [published]
 
 concurrency: docker-build-${{ github.ref }}
 
@@ -19,19 +21,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
 
-      - name: Trivy image build 
+      - name: Trivy image build
         run: |
           docker build -t ${{ github.repository }}:${{ github.sha }} .
-      
+
       - name: Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
         with:
-          image-ref: '${{ github.repository }}:${{ github.sha }}'
-          format: 'table'
-          exit-code: '1'
+          image-ref: "${{ github.repository }}:${{ github.sha }}"
+          format: "table"
+          exit-code: "1"
           ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+          vuln-type: "os,library"
+          severity: "CRITICAL,HIGH"
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@8b122486cedac8393e77aa9734c3528886e4a1a8
@@ -55,6 +57,8 @@ jobs:
           # https://github.com/docker/metadata-action#latest-tag
           tags: |
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
+            type=semver,pattern={{version}}
+            type=semver,pattern={{major}}.{{minor}}
 
       - name: Build and push container image
         uses: docker/build-push-action@e551b19e49efd4e98792db7592c17c09b89db8d8

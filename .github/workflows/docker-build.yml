@@ -51,7 +51,7 @@ jobs:
 
       - name: Extract metadata (tags, labels) for container
         if: ${{ github.event_name == 'push' }}
-        id: meta
+        id: meta-push
         uses: docker/metadata-action@69f6fc9d46f2f8bf0d5491e4aabe0bb8c6a4678a
         with:
           images: ghcr.io/${{ github.repository }}
@@ -61,7 +61,7 @@ jobs:
 
       - name: Extract metadata (tags, labels) for container
         if: ${{ github.event_name == 'release' && github.event.action == 'created' }}
-        id: meta
+        id: meta-release
         uses: docker/metadata-action@69f6fc9d46f2f8bf0d5491e4aabe0bb8c6a4678a
         with:
           images: ghcr.io/${{ github.repository }}
@@ -71,10 +71,21 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
 
       - name: Build and push container image
+        if: ${{ github.event_name == 'push' }}
         uses: docker/build-push-action@e551b19e49efd4e98792db7592c17c09b89db8d8
         with:
           context: .
           push: ${{ github.event_name != 'pull_request' }}
           platforms: linux/amd64, linux/arm/v7, linux/arm64, linux/arm/v6
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: ${{ steps.meta-push.outputs.tags }}
+          labels: ${{ steps.meta-push.outputs.labels }}
+
+      - name: Build and push container image
+        if: ${{ github.event_name == 'release' && github.event.action == 'created' }}
+        uses: docker/build-push-action@e551b19e49efd4e98792db7592c17c09b89db8d8
+        with:
+          context: .
+          push: ${{ github.event_name != 'pull_request' }}
+          platforms: linux/amd64, linux/arm/v7, linux/arm64, linux/arm/v6
+          tags: ${{ steps.meta-release.outputs.tags }}
+          labels: ${{ steps.meta-release.outputs.labels }}

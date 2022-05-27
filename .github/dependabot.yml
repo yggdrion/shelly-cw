@@ -1,10 +1,14 @@
 version: 2
 updates:
-  - package-ecosystem: github-actions
-    directory: /
+  - package-ecosystem: "github-actions"
+    directory: "/"
     schedule:
-      interval: daily
-  - package-ecosystem: gomod
-    directory: /
+      interval: "daily"
+    assignees:
+      - "r4b2"
+  - package-ecosystem: "gomod"
+    directory: "/"
     schedule:
-      interval: daily
+      interval: "daily"
+    assignees:
+      - "r4b2"

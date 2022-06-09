@@ -1,3 +1,6 @@
+[![docker-build](https://github.com/yggdrion/shelly-cw/actions/workflows/docker-build.yml/badge.svg)](https://github.com/yggdrion/shelly-cw/actions/workflows/docker-build.yml)
+[![trivy](https://github.com/yggdrion/shelly-cw/actions/workflows/trivy.yml/badge.svg)](https://github.com/yggdrion/shelly-cw/actions/workflows/trivy.yml)
+
 # shelly-cw
 
 Scan your network for shelly plugs and write the metrics to a cloudwatch metric

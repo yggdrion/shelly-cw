@@ -5,7 +5,6 @@ import (
 	"errors"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"log"
 	"net/http"
 	"time"
@@ -36,7 +35,7 @@ func GetWatt(baseUrl string) (float64, error) {
 	}
 
 	defer resp.Body.Close()
-	bodyBytes, err := ioutil.ReadAll(resp.Body)
+	bodyBytes, err := io.ReadAll(resp.Body)
 	if err != nil {
 		log.Println(err)
 		return 0.0, err
@@ -74,7 +73,7 @@ func GetName(baseUrl string) (string, error) {
 	}
 
 	defer resp.Body.Close()
-	bodyBytes, err := ioutil.ReadAll(resp.Body)
+	bodyBytes, err := io.ReadAll(resp.Body)
 	if err != nil {
 		log.Println(err)
 		return "unknown", err

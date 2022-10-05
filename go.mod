@@ -3,7 +3,7 @@ module github.com/yggdrion/shelly-cloudwatch
 go 1.19
 
 require (
-	github.com/aws/aws-sdk-go v1.44.99
+	github.com/aws/aws-sdk-go v1.44.111
 	github.com/aws/aws-sdk-go-v2/config v1.17.6
 	github.com/aws/aws-sdk-go-v2/credentials v1.12.19
 	github.com/aws/aws-sdk-go-v2/service/cloudwatch v1.21.5

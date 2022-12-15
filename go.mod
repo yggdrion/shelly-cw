@@ -6,7 +6,7 @@ require (
 	github.com/aws/aws-sdk-go v1.44.151
 	github.com/aws/aws-sdk-go-v2/config v1.17.8
 	github.com/aws/aws-sdk-go-v2/credentials v1.12.21
-	github.com/aws/aws-sdk-go-v2/service/cloudwatch v1.22.1
+	github.com/aws/aws-sdk-go-v2/service/cloudwatch v1.23.0
 )
 
 require (

@@ -6,7 +6,7 @@ require (
 	github.com/aws/aws-sdk-go v1.44.245
 	github.com/aws/aws-sdk-go-v2/config v1.18.21
 	github.com/aws/aws-sdk-go-v2/credentials v1.13.20
-	github.com/aws/aws-sdk-go-v2/service/cloudwatch v1.25.9
+	github.com/aws/aws-sdk-go-v2/service/cloudwatch v1.26.0
 )
 
 require (
@@ -16,9 +16,9 @@ require (
 )
 
 require (
-	github.com/aws/aws-sdk-go-v2 v1.17.8 // indirect
-	github.com/aws/aws-sdk-go-v2/internal/configsources v1.1.32 // indirect
-	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.4.26 // indirect
+	github.com/aws/aws-sdk-go-v2 v1.18.0 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/configsources v1.1.33 // indirect
+	github.com/aws/aws-sdk-go-v2/internal/endpoints/v2 v2.4.27 // indirect
 	github.com/aws/aws-sdk-go-v2/internal/ini v1.3.33 // indirect
 	github.com/aws/aws-sdk-go-v2/service/internal/presigned-url v1.9.26 // indirect
 	github.com/aws/aws-sdk-go-v2/service/sso v1.12.8 // indirect
